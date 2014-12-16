@@ -17,61 +17,63 @@ This installation instructions describe how to create a new virtualenv and
 install the package into this.
 
 1. Install the following Ubuntu packages:
-    - python-numpy
-    - python-scipy
-    - python-matplotlib
-    - ipython
-    - python-virtualenv
-    - git
+
+   - python-numpy
+   - python-scipy
+   - python-matplotlib
+   - ipython
+   - python-virtualenv
+   - git
 
 2. Prepare install directory:
 
    We will download and install my Python code into a "special" directory (a
    virtual environment) in order to not pollute your hard disk.
 
-   2.1 Create "virtualenv" named ALPS (or any other name and anywhere you like) with:
-
-       ::
+   a) Create "virtualenv" named ALPS (or any other name and anywhere you like) with::
 
           virtualenv --system-site-packages --clear ALPS
 
-       and activate it for the current shell session::
+      and activate it for the current shell session::
 
-          source ALPS/bin/activate
+            source ALPS/bin/activate
 
-   2.2 Prepare download directory:
-
-       ::
+   b) Prepare download directory::
 
           mkdir ALPS/src
-      
-       and go there::
+
+      and go there::
 
           cd ALPS/src
 
 3. Download and install my packages from GitHub
 
-  3.1 Download
-    ::
+  a) Download::
 
-      git clone https://github.com/eikevons/alps-ccd.git
-      git clone https://github.com/eikevons/plttools.git
+        git clone https://github.com/eikevons/alps-ccd.git
+        git clone https://github.com/eikevons/plttools.git
 
-  3.1 Install the packages in the "ALPS" virtualenv (from inside
-    `.../ALPS/src/`)::
 
-      cd ../lib/python2.7/site-packages
-      ln -s ../../../src/alps-ccd/ccd/ .
-      ln -s ../../../src/plttools/plttools/ .
+  b) Install the packages in the "ALPS" virtualenv (from inside `.../ALPS/src/`)::
 
-    (Note: The more "standard" way of installing Python packages is to use the
-    `setup.py` script. But in our case, the code might change frequently and
-    linking as above ensures that the most recent version is used at all times.)
+        pip install -e alps-ccd
+        pip install -e plttools
+
+    .. note:: With the `-e` switch, the packages are installed
+        *editable* which means that changes to the source code are
+        automatically available in the installed version.
+
+        Alternatively, one can create links to the package directories
+        by hand::
+
+            cd ../lib/python2.7/site-packages
+            ln -s ../../../src/alps-ccd/ccd/ .
+            ln -s ../../../src/plttools/plttools/ .
 
 4. Test that the install worked.
 
-    4.1 Start IPython and try to load my modules::
+   a) Start IPython and try to load the modules::
 
-      ipython
-      In [1]: import ccd, ccd.io, ccd.analysis, ccd.analysis.hotpixels
-      In [2]: import plttools
+        ipython
+        In [1]: import ccd, ccd.io, ccd.analysis, ccd.analysis.hotpixels
+        In [2]: import plttools
