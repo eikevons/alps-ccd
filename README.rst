@@ -48,32 +48,32 @@ install the package into this.
 
 3. Download and install my packages from GitHub
 
-  a) Download::
+   a) Download::
 
-        git clone https://github.com/eikevons/alps-ccd.git
-        git clone https://github.com/eikevons/plttools.git
+          git clone https://github.com/eikevons/alps-ccd.git
+          git clone https://github.com/eikevons/plttools.git
 
 
-  b) Install the packages in the "ALPS" virtualenv (from inside `.../ALPS/src/`)::
+   b) Install the packages in the "ALPS" virtualenv (from inside `.../ALPS/src/`)::
 
-        pip install -e alps-ccd
-        pip install -e plttools
+          pip install -e alps-ccd
+          pip install -e plttools
 
-    .. note:: With the `-e` switch, the packages are installed
-        *editable* which means that changes to the source code are
-        automatically available in the installed version.
+      .. note:: With the `-e` switch, the packages are installed
+         *editable* which means that changes to the source code are
+         automatically available in the installed version.
 
-        Alternatively, one can create links to the package directories
-        by hand::
+         Alternatively, one can create links to the package directories
+         by hand::
 
-            cd ../lib/python2.7/site-packages
-            ln -s ../../../src/alps-ccd/ccd/ .
-            ln -s ../../../src/plttools/plttools/ .
+             cd ../lib/python2.7/site-packages
+             ln -s ../../../src/alps-ccd/ccd/ .
+             ln -s ../../../src/plttools/plttools/ .
 
 4. Test that the install worked.
 
    a) Start IPython and try to load the modules::
 
-        ipython
-        In [1]: import ccd, ccd.io, ccd.analysis, ccd.analysis.hotpixels
-        In [2]: import plttools
+          ipython
+          In [1]: import ccd, ccd.io, ccd.analysis, ccd.analysis.hotpixels
+          In [2]: import plttools
