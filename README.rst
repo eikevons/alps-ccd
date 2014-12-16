@@ -5,9 +5,10 @@ This package contains tools to read and analyze CCD frames. It has been tested
 on Python 2.7 and Python 3.4+.
 
 Required Python packages are:
-  - numpy
-  - scipy
-  - matplotlib
+
+- numpy
+- scipy
+- matplotlib
 
 
 Detailed installation on Ubuntu
