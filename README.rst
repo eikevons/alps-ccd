@@ -77,3 +77,6 @@ install the package into this.
           ipython
           In [1]: import ccd, ccd.io, ccd.analysis, ccd.analysis.hotpixels
           In [2]: import plttools
+   
+   b) If you start a new shell, be sure that you activate the virtualenv
+      with ``source .../ALPS/bin/activate`` before starting python.
