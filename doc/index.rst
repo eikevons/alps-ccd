@@ -13,8 +13,12 @@ contains tools to normalize and analyze CCD frames:
 * :mod:`ccd.io` for opening and storing data.
 * :mod:`ccd.analysis` for analysis tools.
 
+The source code is available on
+`github <https://github.com/eikevons/alps-ccd>`_.
+
 .. toctree::
    :maxdepth: 2
+
 
 
 Indices and tables

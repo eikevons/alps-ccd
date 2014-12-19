@@ -1,8 +1,11 @@
+.. _readme:
+
 alps-ccd: The ALPS CCD toolbox
 ==============================
 
 This package contains tools to read and analyze CCD frames. It has been tested
-on Python 2.7 and Python 3.4+.
+on Python 2.7 and Python 3.4+. Documentation can be found on
+`readthedocs <https://http://alps-ccd.readthedocs.org/en/latest/>`_.
 
 Required Python packages are:
 
