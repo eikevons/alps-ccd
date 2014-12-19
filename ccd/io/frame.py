@@ -79,26 +79,39 @@ class Frame(np.ndarray):
             get information from the directory names as well. See
             `InfoExtractions` object for possible candidates.
         """
+        obj = None
+        close = False
+
         ext = os.path.splitext(path)[1].lower()
+        if ext not in cls.readable_extensions:
+            raise ValueError("Unsupported file type: %s!" % ext)
 
         if fileobj is None:
             fileobj = open(path, "rb")
+            close = True
 
-        if ext == ".spe":
-            return cls.load_spe(fileobj)
+        try:
+            if ext == ".spe":
+                obj = cls.load_spe(fileobj)
 
-        elif ext in (".fits", ".fit"):
-            return cls.load_fits(fileobj)
+            elif ext in (".fits", ".fit"):
+                obj = cls.load_fits(fileobj)
 
-        elif ext == ".png":
-            fi = FrameInfo()
-            if info_extract is not None:
-                ap = os.path.abspath(path)
-                fi.update(info_extract(ap))
-            return cls.load_png(fileobj , fi)
+            elif ext == ".png":
+                fi = FrameInfo()
+                if info_extract is not None:
+                    ap = os.path.abspath(path)
+                    fi.update(info_extract(ap))
+                obj =  cls.load_png(fileobj , fi)
+        finally:
+            if close:
+                fileobj.close()
+        if obj is None:
+            raise RuntimeError("Unable to open file: %s" % path)
 
-        else:
-            raise ValueError("Unsupported file type: %s!" % ext)
+        return obj
+
+
 
     readable_extensions.extend([".fit", ".fits"])
     @classmethod

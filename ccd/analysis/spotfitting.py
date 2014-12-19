@@ -1,6 +1,6 @@
 """
-Tool to fit 2-dim data
-----------------------
+Tools to fit 2-dim data
+-----------------------
 
 .. autoclass:: GaussContExpo
 .. autoclass:: Gauss2D
@@ -27,9 +27,9 @@ def fwhm(data, axis=None):
         The indices of the fwhm. If axis is specified a plain pair is
         returned.
 
-    See Also
-    --------
-    For usage of `apply_over_axes` see:
+    Notes
+    -----
+    For usage of :func:`apply_over_axes` see:
     http://www.mail-archive.com/numpy-discussion@lists.sourceforge.net/msg03469.html
     """
     if axis is None:
@@ -51,7 +51,7 @@ class GaussContExpo(object):
     fit-function. Parameters can be set using :meth:`update_params`, during
     object creation or with :meth:`initial_guess`.
 
-    The current parameter values are accesible through :attr:`param_values`
+    The current parameter values are accessible through :attr:`param_values`
     and :attr:`param_dict`.
     """
     param_names = ("A", "mu0", "mu1", "sigma0", "sigma1", "xi", "offset")
@@ -156,12 +156,12 @@ class Gauss2D(GaussContExpo):
 
     See Also
     --------
-    :class:`GaussContExpo`
+    :class:`GaussContExpo` : the base class
     """
     param_names = ("A", "mu0", "mu1", "sigma0", "sigma1", "theta", "offset")
 
     @staticmethod
-    def func(X0_X1, amplitude, mu0, mu1, sigma0, sigma1, theta, offset):
+    def gaussian2d(X0_X1, amplitude, mu0, mu1, sigma0, sigma1, theta, offset):
         """Analytic definition of 2D gaussian distribution"""
         X0, X1 = X0_X1
 
@@ -224,7 +224,7 @@ class Gauss2D(GaussContExpo):
         # y = np.linspace(0, size[1], size[1])
         # xy = np.meshgrid(x, y)
 
-        popt, pcov = scipy.optimize.curve_fit(self.func, (X0, X1), data, p0=self.param_values)
+        popt, pcov = scipy.optimize.curve_fit(self.gaussian2d, (X0, X1), data, p0=self.param_values)
         self.update_params(*popt)
 
     def evaluate(self, X0, X1, ignoreOffset=False):
@@ -242,9 +242,9 @@ class Gauss2D(GaussContExpo):
             The values of the gaussian  at this position
         """
         if ignoreOffset:
-            return self.func((X0, X1), *self.param_values) - self.param_dict['offset']
+            return self.gaussian2d((X0, X1), *self.param_values) - self.param_dict['offset']
         else:
-            return self.func((X0, X1), *self.param_values)
+            return self.gaussian2d((X0, X1), *self.param_values)
 
     def integral(self):
         """Calculate the integral under the spot ignoring the offset"""

@@ -38,6 +38,23 @@ class TestFrame(unittest.TestCase):
         self.assertEqual(frame.info["ro_mode"], "2MHz")
         self.assertEqual(frame.shape, (1400, 1500))
 
+    def test_get_frame_exceptions(self):
+        with self.assertRaises(ValueError):
+            get_frame('foo.bar')
+
+        with self.assertRaises(IOError):
+            get_frame('foo.fit')
+
+        with self.assertRaises(IOError):
+            get_frame('foo.fits')
+
+        with self.assertRaises(IOError):
+            get_frame('foo.png')
+
+        with self.assertRaises(IOError):
+            get_frame('foo.spe')
+
+
 
 if __name__ == "__main__":
 
