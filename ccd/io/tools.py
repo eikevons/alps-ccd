@@ -6,7 +6,13 @@ __all__ = ["frame_iter", "get_frame"]
 
 
 def frame_iter(paths):
-    """Loop over all frames in the files in `paths` regardless of single-/multiple-frame files."""
+    """Loop over all frames in the files in `paths` regardless of single-/multiple-frame files.
+
+    Parameters
+    ----------
+    paths : iterable of `str`
+        The file names.
+    """
     for p in paths:
         try:
             fr = Frame.load_file(p)
@@ -18,7 +24,11 @@ def frame_iter(paths):
 
 
 def get_frame(framepath):
-    """Get a frame from a single or multi-frame file."""
+    """Get a frame from a single or multi-frame file.
+
+    If a frame from a multi-frame file is requested, the frame number must be appended to the file path deliminated by :attr:`ccd.io.FrameSetInfo.framenumsep` (default: `'##'`), e.g.
+    :file:`some/deep/directory/name.spe##3`. Frame numbers are 0-indexed.
+    """
     tok = framepath.split(FrameSetInfo.framenumsep)
     if len(tok) == 1:
         return Frame.load_file(framepath)

@@ -285,12 +285,11 @@ class FrameSet(object):
         Parameters
         ----------
         i : int
-            Return the `i`th index.
-        retplain : bool, optional
+            Return the `i`-th index.
+        retplain : {True, False, None}, optional
             If `True` return a plain `np.ndarray` frame, if `False` return a
             `Frame` object with appropriate `info` dictionary.
             If `None` (default) use the value of `self.ret_plain_frame`.
-
             If masked data is stored, the returned frame is always a masked frame.
         """
         if retplain is None:

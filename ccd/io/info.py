@@ -48,6 +48,34 @@ def tokenize_basename(path):
 
 
 class FrameInfo(dict):
+    """Container for CCD frame meta information
+
+    Stored data (if available) are:
+
+        temperature
+            The device temperature during exposure in Kelvin.
+
+        exposure
+            The exposure time in seconds.
+
+        gain
+            The read-out ADC gain identifier as `str`.
+
+        datetime
+            The date and time when the exposure was taken as `datetime.datetime`.
+
+        ro_mode
+            The read-out mode as `str`.
+
+        camera
+            The camera type as `str`.
+
+        comment
+            A comment containing e.g. notes about performed corrections.
+
+        path
+            The path of the file as `str`.
+    """
     _allowed_keys = ("temperature", "exposure", "gain", "datetime",        "ro_mode", "camera", "comment", "path")
     _allowed_types = (float,        float,      str,    datetime.datetime, str,       str,      str,       str)
 
@@ -149,6 +177,8 @@ class FrameInfo(dict):
 
 class FrameSetInfo(FrameInfo):
     framenumsep = "##"
+    """Separator between frame-set filename and frame number"""
+
     _allowed_keys = ("temperature", "exposure", "gain", "ro_mode", "set_comment", "camera", "datetime", "comments", "paths")
     _allowed_types = (float,        float,      str,    str,        str,          str,       list,      list,       list)
 
@@ -307,10 +337,11 @@ class TarFile(object):
 def mk_key_function(*keys):
     """Make a key-function to sort/group lists of frames (or other objects).
 
-    Supported keys are::
-        - all allowed keys of `FrameInfo`
-        - `"dir"`: The sub-directory of the frame file.
-        - Callables.
+    Supported keys ar:
+
+    - all allowed keys of `FrameInfo`
+    - `"dir"`: The sub-directory of the frame file.
+    - Callables accepting a `Frame` object.
 
     Examples
     --------

@@ -5,11 +5,16 @@ from .info import FrameInfo
 
 class Frame(np.ndarray):
     """CCD frame container stores the pixel data in a numpy.array and meta
-    data in the `info` dict-like attribute.
+    data in the :attr:`info` dict-like attribute.
 
-    Use `load_file` to load an image file.
+    Use :meth:`load_file` to load an image file.
 
-    Index layout: [row, column] = [y, x]
+    Index layout: `[row, column] = [y, x]`
+
+    Attributes
+    ----------
+    info : :class:`FrameInfo`
+        Meta information of the frame.
     """
 
     # this list is filled before the specific load_* classmethods
@@ -47,7 +52,7 @@ class Frame(np.ndarray):
         return arr.view(np.ndarray)
 
     ## The arg... functions do not call __array_wrap__ or __array_prepare__
-    ## and return objects of type `Frame`.
+    ## and return objects of type `Frame` so we overwrite them here.
     def argmax(self, axis=None, out=None):
         return self.view(np.ndarray).argmax(axis, out)
 
@@ -149,8 +154,8 @@ class Frame(np.ndarray):
     def write_to_fits(self, path, overwrite=False):
         """Write Frame data to FITS file.
 
-        Parameter
-        ---------
+        Parameters
+        ----------
         path : str
             The file path.
         clobber : bool, optional

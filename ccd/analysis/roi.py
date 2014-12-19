@@ -1,4 +1,6 @@
-"""A collection of patters and ROIs.
+"""\
+A Collection of Patterns and ROIs
+---------------------------------
 """
 
 import logging
@@ -83,8 +85,8 @@ class ROI(object):
         inner : array of ints
             The corresponding indices of the ROI area.
 
-        Example
-        -------
+        Examples
+        --------
         >>> roi = ROI(asarray([[0, 0, 0, 0],
         ...                    [0, 1, 1, 0],
         ...                    [0, 1, 0, 0],

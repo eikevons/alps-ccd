@@ -7,8 +7,8 @@ def ML_estimator_s2(s2, df):
     The max-likelihood estimator is simply the weighted average with the
     number of degrees fo freedom as weights.
 
-    Paramters
-    ---------
+    Parameters
+    ----------
     s2 : array_like
         Unbiased array estimators.
     df : array_like
@@ -20,8 +20,8 @@ def ML_estimator_s2(s2, df):
 def ML_estimator_ds2(s2, df):
     """Uncertainty of the max-likelihood estimator `ML_estimator_s2`.
 
-    Paramters
-    ---------
+    Parameters
+    ----------
     s2 : array_like
         Unbiased array estimators.
     df : array_like

@@ -1,3 +1,10 @@
+"""
+Tool to fit 2-dim data
+----------------------
+
+.. autoclass:: GaussContExpo
+.. autoclass:: Gauss2D
+"""
 import numpy as np
 import scipy.optimize
 
@@ -20,8 +27,8 @@ def fwhm(data, axis=None):
         The indices of the fwhm. If axis is specified a plain pair is
         returned.
 
-    See
-    ---
+    See Also
+    --------
     For usage of `apply_over_axes` see:
     http://www.mail-archive.com/numpy-discussion@lists.sourceforge.net/msg03469.html
     """
@@ -144,11 +151,11 @@ class GaussContExpo(object):
 
 
 class Gauss2D(GaussContExpo):
-    """Fit a 2-dim to `data`.
+    """Fit a 2-dim gaussian to `data`.
 
 
-    See
-    ---
+    See Also
+    --------
     :class:`GaussContExpo`
     """
     param_names = ("A", "mu0", "mu1", "sigma0", "sigma1", "theta", "offset")
@@ -178,8 +185,8 @@ class Gauss2D(GaussContExpo):
     def initial_guess(self, data):
         """Guess distribution parameters based on given dataset
 
-        Parameters:
-        -----------
+        Parameters
+        ----------
         data : 2-dim ndarray
             data numpy array of dimension 2
         """
